@@ -7,7 +7,18 @@ h5, body{
 	font-family: 'Nanum Gothic';
 	font-size: 18px;
 }
-#search_line{
+#search_line, #lectureDivide_Top{
 	display: flex;
 	margin: 0 10px 0 auto; 
 }
+
+#card{
+	margin: 0 auto;
+	width: 80%;
+}
+
+#form-control{ width: 10%; }
+
+#form-search{ width: 70%; }
+
+#form-row{ display: flex; }
