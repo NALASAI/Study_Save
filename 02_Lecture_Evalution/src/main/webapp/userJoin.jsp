@@ -40,7 +40,7 @@
 		</div>
 	</nav>
 	<section class="container mt-3" style="max-width: 560px; height: 250px;">
-		<form method="post" action="./userLoginAction.jsp">
+		<form method="post" action="./userRegisterAction.jsp">
 			<div class="form-group">
 				<label>아이디</label>
 				<input type="text" name="userID" class="form-control">
