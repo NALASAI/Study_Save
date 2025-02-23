@@ -7,13 +7,13 @@ import java.sql.ResultSet;
 import util.DatabaseUtil;
 
 public class UserDAO {
-	
-	Connection conn = null;
-	PreparedStatement pstmt = null;
-	ResultSet rs = null;
-	
+		
 	public int login(String userID, String userPW) {
 		String SQL = "select userPW from user where userID = ?";
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		
 		try {
 			conn = DatabaseUtil.getConnection();
@@ -43,7 +43,10 @@ public class UserDAO {
 	}
 
 	public int join(UserDTO user) { //UserDTO 객체를 통해 쉽게 사용자를 생성할 수 있도록 설정
-		String SQL = "insert into user value (?, ?, ?, ?, fasle)";
+		String SQL = "insert into user value (?, ?, ?, ?, false)";
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
 		
 		try {
 			conn = DatabaseUtil.getConnection();
@@ -68,6 +71,10 @@ public class UserDAO {
 	public String getUserEmail(String userID) { // 특정 사용자의 이메일 자체를 반환해주는 함수
 		String SQL = "select userEmail from user where userID = ?";
 		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
 		try {
 			conn = DatabaseUtil.getConnection();
 			
@@ -91,6 +98,10 @@ public class UserDAO {
 	public boolean getUserEmailChecked(String userID) { // 현재 사용자가 이메일 검증이 되었는지 확인하는 함수
 		String SQL = "select userEmailChecked from user where userID = ?";
 		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
 		try {
 			conn = DatabaseUtil.getConnection();
 			
@@ -113,6 +124,9 @@ public class UserDAO {
 	
 	public boolean setUserEmailChecked(String userID) { // 이메일 검증이 완료됬음을 확인해주는 함수
 		String SQL = "update user set userEmailChecked = true where userID = ?";
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
 		
 		try {
 			conn = DatabaseUtil.getConnection();

@@ -10,13 +10,14 @@
 	String userPW = null;
 	String userEmail = null;
 	
-	if(request.getParameter("userID") == null){
+	// == -> != 수정
+	if(request.getParameter("userID") != null){
 		userID = request.getParameter("userID");
 	}
-	if(request.getParameter("userPW") == null){
+	if(request.getParameter("userPW") != null){
 		userPW = request.getParameter("userPW");
 	}
-	if(request.getParameter("userEmail") == null){
+	if(request.getParameter("userEmail") != null){
 		userEmail = request.getParameter("userEmail");
 	}
 	// 아이디, 비밀번호, 이메일 중 하나라도 들어오지 않은 경우 발생
