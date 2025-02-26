@@ -24,7 +24,7 @@ public class UserDAO {
 			rs = pstmt.executeQuery(); //executeQuery() : DB에서 데이터를 검색할때 사용
 			
 			if(rs.next()) {
-				if(rs.getString(1).equals(userID)) {
+				if(rs.getString(1).equals(userPW)) {
 					return 1; // 로그인 성공
 				}else {
 					return 0; // 비밀번호 틀림

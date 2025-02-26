@@ -20,11 +20,11 @@
 		if(session.getAttribute("userID") != null){
 			userID = (String) session.getAttribute("userID");
 		}
-		if(userID != null){
+		if(userID == null){
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
-			script.println("alert('이미 로그인한 상태입니다.');");
-			script.println("location.href = 'index.jsp';");
+			script.println("alert('로그인을 해주세요.');");
+			script.println("location.href = 'userLogin.jsp';");
 			script.println("</script>");
 			script.close();
 			return;
@@ -67,17 +67,10 @@
 			</div>
 		</nav>
 	<section class="container mt-3" style="max-width: 560px; height: 200px;">
-		<form method="post" action="./userLoginAction.jsp">
-			<div class="form-group">
-				<label>아이디</label>
-				<input type="text" name="userID" class="form-control">
-			</div>
-			<div class="form-group">
-				<label>비밀번호</label>
-				<input type="password" name="userPW" class="form-control">
-			</div>
-			<button type="submit" class="btn btn-primary" style="margin-top: 1rem;">로그인</button>
-		</form>
+		<div class="alert alert-warning mt-4" role="alert">
+			이메일 주소 인증을 하셔야 이용이 가능합니다.
+		</div>
+		<a href="emailSendAction.jsp" class btn btn-primary>인증 메일 다시받기</a>
 	</section>
 	<footer class="bg-dark mt-4 p-5 text-center" style="color:#FFFFFF;">
 		Copyright &copy, 2025강동욱All Rights Reserved.
