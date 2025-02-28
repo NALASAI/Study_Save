@@ -192,7 +192,7 @@
 								</div>
 								<div class="form-group col-sm-4">
 									<label>수강 학기</label>
-									<select name="lectureDivide" class="form-control">
+									<select name="semeterDivide" class="form-control">
 										<option value="1학기" selected>1학기</option>
 										<option value="여름학기">여름학기</option>
 										<option value="2학기">2학기</option>
@@ -249,7 +249,7 @@
 								</div>
 								<div class="form-group col-sm-3">
 									<label>강의 내용</label>
-									<select name="totalScore" class="form-control">
+									<select name="lectureScore" class="form-control">
 										<option value="A" selected>A</option>
 										<option value="B">B</option>
 										<option value="C">C</option>
