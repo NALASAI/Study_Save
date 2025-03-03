@@ -18,7 +18,7 @@
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('로그인을 해주세요');");
-		script.println("history.back();");
+		script.println("location.href = 'userLogin.jsp';");
 		script.println("</script>");
 		script.close();
 		return;

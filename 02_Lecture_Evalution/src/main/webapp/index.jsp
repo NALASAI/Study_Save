@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter"%>
+<%@ page import="java.util.ArrayList"%>
 <%@ page import="user.UserDAO"%>
+<%@ page import="evaluation.EvaluationDAO"%>
+<%@ page import="evaluation.EvaluationDTO"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -93,62 +96,67 @@
 				</div>
 			</form>
 		</section>
-		<div id="card" class="card bg-light mt-3">
-			<div class="card-header bg-light">
-				<div class="row">
-					<div class="col-8 text-left">컴퓨터개론&nbsp;<small>강동욱</small></div>
-					<div class="col-4 text-right">
-						종합 <span style="color: red;">A</span>
+		<%
+			String lectureName = null;
+			String professorName = null;
+			String semeterDivide = null;
+			String lectureDivide = null;
+			String evaluationTitle = null;
+			String evaluationContent = null;
+			String totalScore = null;
+			String creditScore = null;
+			String comfortableScore = null;
+			String lectureScore = null;
+			int likeCount = 0;
+			
+			EvaluationDAO dao = new EvaluationDAO();
+			
+			ArrayList<EvaluationDTO> list = dao.view();
+			
+			if(list.isEmpty()){
+		%>
+			<h2> 게시글이 비어있습니다. </h2>
+		<%
+			}else{
+				for(EvaluationDTO dto : list){		
+		%>
+			<div id="card" class="card bg-light mt-3">
+				<div class="card-header bg-light">
+					<div class="row">
+						<div class="col-8 text-left">
+							<%=dto.getLectureName() %>
+							&nbsp;
+							<small><%=dto.getProfessorName() %></small>
+						</div>
+						<div class="col-4 text-right">
+							종합 <span style="color: red;"><%=dto.getTotalScore() %></span>
+						</div>
+					</div>
+				</div>
+				<div id="card-body" class="card-body">
+					<h5 id="card-title" class="card-title">
+						<%=dto.getEvaluationTitle() %> &nbsp;
+						<small>(<%=dto.getLectureYear() + " " + dto.getSemeterDivide() %>)</small>
+					</h5>
+					<p class="card-text"><%=dto.getEvaluationContent() %></p>
+					<div class="row">
+						<div class="col-9 text-left">
+							성적 <span style="color: red;"><%=dto.getCreditScore() %></span>
+							여유 <span style="color: red;"><%=dto.getComfortableScore()%></span>
+							강의 <span style="color: red;"><%=dto.getLectureScore() %></span>
+							<span style="color: green;">(추천 : <%=dto.getLikeCount() %>)</span>
+						</div>
+						<div class="col-3 text-right">
+							<a style="text-decoration: none;" onclick="return confirm('추천하시겠습니까?')" href="./likeAction.jsp?evaluationID=">추천</a>
+							<a style="text-decoration: none;" onclick="return confirm('삭제하시겠습니까?')" href="./deleteAction.jsp?evaluationID=">삭제</a>
+						</div>
 					</div>
 				</div>
 			</div>
-			<div id="card-body" class="card-body">
-				<h5 id="card-title" class="card-title">
-					정말 좋은 강의입니다. &nbsp; <small>(2017 겨울학기)</small>
-				</h5>
-				<p class="card-text">강의가 널널해서 배운 내용은 적지만, 학점이 매우 잘나옵니다.</p>
-				<div class="row">
-					<div class="col-9 text-left">
-						성적 <span style="color: red;">A</span>
-						여유 <span style="color: red;">A</span>
-						강의 <span style="color: red;">A</span>
-						<span style="color: green;">(추천 : 15)</span>
-					</div>
-					<div class="col-3 text-right">
-						<a style="text-decoration: none;" onclick="return confirm('추천하시겠습니까?')" href="./likeAction.jsp?evaluationID=">추천</a>
-						<a style="text-decoration: none;" onclick="return confirm('삭제하시겠습니까?')" href="./deleteAction.jsp?evaluationID=">삭제</a>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div id="card" class="card bg-light mt-3">
-			<div class="card-header bg-light">
-				<div class="row">
-					<div class="col-8 text-left">자료구조&nbsp;<small>강동욱</small></div>
-					<div class="col-4 text-right">
-						종합 <span style="color: red;">B</span>
-					</div>
-				</div>
-			</div>
-			<div id="card-body" class="card-body">
-				<h5 id="card-title" class="card-title">
-					정말 좋은 강의입니다. &nbsp; <small>(2016 2학기)</small>
-				</h5>
-				<p class="card-text">유익한 강의입니다. 컴퓨터 자료에대한 내용을 배울 수 있습니다.</p>
-				<div class="row">
-					<div class="col-9 text-left">
-						성적 <span style="color: red;">B</span>
-						여유 <span style="color: red;">B</span>
-						강의 <span style="color: red;">A</span>
-						<span style="color: green;">(추천 : 13)</span>
-					</div>
-					<div class="col-3 text-right">
-						<a style="text-decoration: none;" onclick="return confirm('추천하시겠습니까?')" href="./likeAction.jsp?evaluationID=">추천</a>
-						<a style="text-decoration: none;" onclick="return confirm('삭제하시겠습니까?')" href="./deleteAction.jsp?evaluationID=">삭제</a>
-					</div>
-				</div>
-			</div>
-		</div>
+		<%
+				}
+			}
+		%>
 		<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">

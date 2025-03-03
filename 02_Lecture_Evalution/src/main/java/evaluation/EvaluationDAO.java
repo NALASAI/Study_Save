@@ -3,6 +3,7 @@ package evaluation;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import util.DatabaseUtil;
 
@@ -43,5 +44,37 @@ public class EvaluationDAO {
 		}
 
 		return -2;
+	}
+	
+	public ArrayList<EvaluationDTO> view(){
+		ArrayList<EvaluationDTO> list = new ArrayList<EvaluationDTO>();
+		String SQL = "select * from evaluation;";
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DatabaseUtil.getConnection();
+			pstmt = conn.prepareStatement(SQL);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				list.add(new EvaluationDTO(
+						rs.getInt("evaluationID"), rs.getString("userID"),
+						rs.getString("lectureName"), rs.getString("professorName"),
+						rs.getInt("lectureYear"), rs.getString("semeterDivide"),
+						rs.getString("lectureDivide"), rs.getString("evaluationTitle"),
+						rs.getString("evaluationContent"), rs.getString("totalScore"),
+						rs.getString("creditScore"), rs.getString("comfortableScore"),
+						rs.getString("lectureScore"), rs.getInt("likeCount")
+						));
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return list;
 	}
 }
