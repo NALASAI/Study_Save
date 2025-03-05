@@ -18,7 +18,11 @@ h5, body{
 	width: 80%;
 }
 
-#form-control{ width: 10%; }
+.page-item{
+	margin: 0 5px;
+}
+
+#form-control{ width: auto; }
 
 #form-search{ width: 70%; }
 
