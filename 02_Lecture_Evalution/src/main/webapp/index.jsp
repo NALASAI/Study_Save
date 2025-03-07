@@ -172,8 +172,8 @@
 						<span style="color: green;">(추천 : <%=dto.getLikeCount() %>)</span>
 					</div>
 					<div class="col-3 text-right">
-						<a style="text-decoration: none;" onclick="return confirm('추천하시겠습니까?')" href="./likeAction.jsp?evaluationID=">추천</a>
-						<a style="text-decoration: none;" onclick="return confirm('삭제하시겠습니까?')" href="./deleteAction.jsp?evaluationID=">삭제</a>
+						<a style="text-decoration: none;" onclick="return confirm('추천하시겠습니까?')" href="./likeAction.jsp?evaluationID=<%=dto.getEvaluationID()%>">추천</a>
+						<a style="text-decoration: none;" onclick="return confirm('삭제하시겠습니까?')" href="./deleteAction.jsp?evaluationID=<%=dto.getEvaluationID()%>">삭제</a>
 					</div>
 				</div>
 			</div>
@@ -211,8 +211,8 @@
 						<span style="color: green;">(추천 : <%=dto.getLikeCount() %>)</span>
 					</div>
 					<div class="col-3 text-right">
-						<a style="text-decoration: none;" onclick="return confirm('추천하시겠습니까?')" href="./likeAction.jsp?evaluationID=">추천</a>
-						<a style="text-decoration: none;" onclick="return confirm('삭제하시겠습니까?')" href="./deleteAction.jsp?evaluationID=">삭제</a>
+						<a style="text-decoration: none;" onclick="return confirm('추천하시겠습니까?')" href="./likeAction.jsp?evaluationID=<%=dto.getEvaluationID()%>">추천</a>
+						<a style="text-decoration: none;" onclick="return confirm('삭제하시겠습니까?')" href="./deleteAction.jsp?evaluationID=<%=dto.getEvaluationID()%>">삭제</a>
 					</div>
 				</div>
 			</div>

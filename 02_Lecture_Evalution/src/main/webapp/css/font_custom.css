@@ -27,3 +27,5 @@ h5, body{
 #form-search{ width: 70%; }
 
 #form-row{ display: flex; }
+
+.text-right{ text-align: right; }

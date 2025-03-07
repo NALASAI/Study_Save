@@ -116,9 +116,83 @@ public class EvaluationDAO {
 		} finally {
 			try { if(conn != null) conn.close(); }catch (Exception e) { e.printStackTrace(); }
 			try { if(pstmt != null) pstmt.close(); }catch (Exception e) { e.printStackTrace(); }
-			try { if(rs != null) rs.close(); }catch (Exception e) { e.printStackTrace(); } //
+			try { if(rs != null) rs.close(); }catch (Exception e) { e.printStackTrace(); }
 		}
 		
 		return list;
+	}
+	
+	public int like(String evaluationID) {
+		String SQL = "update evaluation set likeCount = likeCount + 1 where evaluationID = ?";
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DatabaseUtil.getConnection();
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, Integer.parseInt(evaluationID));
+			return pstmt.executeUpdate();	
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try { if(conn != null) conn.close(); }catch (Exception e) { e.printStackTrace(); }
+			try { if(pstmt != null) pstmt.close(); }catch (Exception e) { e.printStackTrace(); }
+			try { if(rs != null) rs.close(); }catch (Exception e) { e.printStackTrace(); }
+		}
+		
+		return -1;
+	}
+
+	public int delete(String evaluationID) {
+		String SQL = "delete from evaluation where evaluationID = ?";
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DatabaseUtil.getConnection();
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, Integer.parseInt(evaluationID));
+			return pstmt.executeUpdate();	
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try { if(conn != null) conn.close(); }catch (Exception e) { e.printStackTrace(); }
+			try { if(pstmt != null) pstmt.close(); }catch (Exception e) { e.printStackTrace(); }
+			try { if(rs != null) rs.close(); }catch (Exception e) { e.printStackTrace(); }
+		}
+		
+		return -1;
+	}
+	
+	public String getUserID(String evaluationID) {
+		String SQL = "select userID from evaluation where evaluationID = ?";
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DatabaseUtil.getConnection();
+			
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, Integer.parseInt(evaluationID));
+			rs = pstmt.executeQuery();
+
+			if(rs.next()) {
+				return rs.getString(1);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try { if(conn != null) conn.close(); }catch (Exception e) { e.printStackTrace(); } // conn 객체 초기화
+			try { if(pstmt != null) pstmt.close(); }catch (Exception e) { e.printStackTrace(); } // pstmt 객체 초기화
+			try { if(rs != null) rs.close(); }catch (Exception e) { e.printStackTrace(); } // rs 객체 초기화
+		}
+
+		return null;
 	}
 }

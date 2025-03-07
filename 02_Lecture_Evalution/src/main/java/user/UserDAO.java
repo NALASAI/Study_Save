@@ -43,7 +43,7 @@ public class UserDAO {
 	}
 
 	public int join(UserDTO user) { //UserDTO 객체를 통해 쉽게 사용자를 생성할 수 있도록 설정
-		String SQL = "insert into user value (?, ?, ?, ?, false)";
+		String SQL = "insert into user values (?, ?, ?, ?, false)";
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
